@@ -1,8 +1,7 @@
-package ci.net.demo1.controllers.equipments;
+package ci.net.demo1.controllers.users;
 
 import ci.net.demo1.models.entities.Equipment;
 import ci.net.demo1.models.repos.EquipmentRepo;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,10 +10,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet("/equipment")
-public class ReadEquipment extends HttpServlet {
+
+@WebServlet("/user/delete")
+public class DeleteUser extends HttpServlet {
     private EquipmentRepo equipmentRepo;
 
     public void init() {
@@ -25,17 +24,19 @@ public class ReadEquipment extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-                listEquipment(request, response);
+            deleteEquipment(request, response);
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
     }
 
-    private void listEquipment(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        List<Equipment> listEquipment = equipmentRepo.getAll();
-        request.setAttribute("listEquipment", listEquipment);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("equipments/logList.jsp");
-        dispatcher.forward(request, response);
+    private void deleteEquipment(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Equipment deleteEquipment = equipmentRepo.getById(id);
+
+        if (deleteEquipment != null) {
+            equipmentRepo.delete(deleteEquipment);
+            response.sendRedirect("/demo1-1.0-SNAPSHOT/equipment");
+        }
     }
 }

@@ -1,4 +1,4 @@
-package ci.net.demo1.controllers.equipments;
+package ci.net.demo1.controllers.logs;
 
 import ci.net.demo1.models.entities.Equipment;
 import ci.net.demo1.models.repos.EquipmentRepo;
@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/equipment")
-public class ReadEquipment extends HttpServlet {
+@WebServlet("/log")
+public class ReadLog extends HttpServlet {
     private EquipmentRepo equipmentRepo;
 
     public void init() {

@@ -1,4 +1,4 @@
-package ci.net.demo1.controllers.equipments;
+package ci.net.demo1.controllers.users;
 
 import ci.net.demo1.models.entities.Equipment;
 import ci.net.demo1.models.repos.EquipmentRepo;
@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/equipment")
-public class ReadEquipment extends HttpServlet {
+@WebServlet("/user")
+public class ReadUser extends HttpServlet {
     private EquipmentRepo equipmentRepo;
 
     public void init() {
@@ -35,7 +35,7 @@ public class ReadEquipment extends HttpServlet {
             throws SQLException, IOException, ServletException {
         List<Equipment> listEquipment = equipmentRepo.getAll();
         request.setAttribute("listEquipment", listEquipment);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("equipments/logList.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("logs/logList.jsp");
         dispatcher.forward(request, response);
     }
 }

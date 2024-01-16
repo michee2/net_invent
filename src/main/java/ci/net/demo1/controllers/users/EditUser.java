@@ -1,4 +1,4 @@
-package ci.net.demo1.controllers.equipments;
+package ci.net.demo1.controllers.users;
 
 import ci.net.demo1.models.entities.Equipment;
 import ci.net.demo1.models.repos.EquipmentRepo;
@@ -11,31 +11,37 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet("/equipment")
-public class ReadEquipment extends HttpServlet {
+@WebServlet("/user/edit")
+public class EditUser extends HttpServlet {
     private EquipmentRepo equipmentRepo;
 
     public void init() {
         equipmentRepo = new EquipmentRepo();
     }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-                listEquipment(request, response);
+            showEditForm(request, response);
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
     }
 
-    private void listEquipment(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        List<Equipment> listEquipment = equipmentRepo.getAll();
-        request.setAttribute("listEquipment", listEquipment);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("equipments/logList.jsp");
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Equipment existingEquipment = equipmentRepo.getById(id);
+        request.setAttribute("equipment", existingEquipment);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views_mod/equipment-form.jsp");
         dispatcher.forward(request, response);
+
     }
 }
