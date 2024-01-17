@@ -63,10 +63,10 @@ pageEncoding="UTF-8"%>
                     <div class="card">
                         <div class="card-body">
                             <c:if test="${user != null}">
-                            <form id="add-user-form" class="p-2 needs-validation" action="<%=request.getContextPath()%>/user/update" method="post">
+                            <form class="p-2 needs-validation" action="<%=request.getContextPath()%>/user/update" method="post">
                                 </c:if>
                                 <c:if test="${user == null}">
-                                <form id="add-user-form" class="p-2 needs-validation" novalidate action="<%=request.getContextPath()%>/user/add" method="post">
+                                <form class="p-2 needs-validation" novalidate action="<%=request.getContextPath()%>/user/add" method="post">
                                     </c:if>
 
                                         <c:if test="${user != null}">

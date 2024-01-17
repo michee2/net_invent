@@ -1,7 +1,7 @@
 package ci.net.demo1.controllers.logs;
 
-import ci.net.demo1.models.entities.Equipment;
-import ci.net.demo1.models.repos.EquipmentRepo;
+import ci.net.demo1.models.entities.Log;
+import ci.net.demo1.models.repos.LogRepo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,10 +14,10 @@ import java.sql.SQLException;
 
 @WebServlet("/log/add")
 public class CreateLog extends HttpServlet {
-    private EquipmentRepo equipmentRepo;
+    private LogRepo equipmentRepo;
 
     public void init() {
-        equipmentRepo = new EquipmentRepo();
+        equipmentRepo = new LogRepo();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -29,17 +29,14 @@ public class CreateLog extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            createEquipment(request, response);
+            createLog(request, response);
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
     }
 
-    private void createEquipment(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        String site = request.getParameter("site");
-        String etat = request.getParameter("etat");
-        Equipment newEquipment = new Equipment(site, etat);
-        equipmentRepo.create(newEquipment);
-        response.sendRedirect("/demo1-1.0-SNAPSHOT/equipment");
+    private void createLog(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+
+        response.sendRedirect("/demo1-1.0-SNAPSHOT/log");
     }
 }

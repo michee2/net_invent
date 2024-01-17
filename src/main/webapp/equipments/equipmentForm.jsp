@@ -5,7 +5,7 @@
   Time: 10:21
   To change this template use File | Settings | File Templates.
 --%>
-%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -63,10 +63,10 @@ pageEncoding="UTF-8"%>
                     <div class="card">
                         <div class="card-body">
                             <c:if test="${equipment != null}">
-                            <form id="add-equipment-form" class="p-2 needs-validation" action="<%=request.getContextPath()%>/equipment/update" method="post">
+                            <form class="p-2 needs-validation" action="<%=request.getContextPath()%>/equipment/update" method="post">
                                 </c:if>
                                 <c:if test="${equipment == null}">
-                                <form id="add-equipment-form" class="p-2 needs-validation" novalidate action="<%=request.getContextPath()%>/equipment/add" method="post">
+                                <form class="p-2 needs-validation" novalidate action="<%=request.getContextPath()%>/equipment/add" method="post">
                                     </c:if>
 
                                     <c:if test="${equipment != null}">
@@ -78,48 +78,65 @@ pageEncoding="UTF-8"%>
                                             <c:choose>
                                                 <c:when test="${equipment != null}">
                                                     <!-- Code to execute when the condition is true -->
-                                                    <input type="text" name="firstname" class="form-control form-control-lg" value="${equipment.firstname}" required>
+                                                    <input type="text" name="name" class="form-control form-control-lg" value="${equipment.name}" required>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <!-- Code to execute when the condition is false (equivalent to 'else') -->
-                                                    <input type="text" name="firstname" class="form-control form-control-lg" placeholder="Firstname" required>
+                                                    <input type="text" name="name" class="form-control form-control-lg" placeholder="Name" required>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <div class="invalid-feedback">Firstname is required!</div>
+                                            <div class="invalid-feedback">Name is required!</div>
                                         </div>
 
                                         <div class="col">
                                             <c:choose>
                                                 <c:when test="${equipment != null}">
                                                     <!-- Code to execute when the condition is true -->
-                                                    <input type="text" name="lastname" class="form-control form-control-lg" value="${equipment.lastname}" required>
+                                                    <input type="text" name="provider" class="form-control form-control-lg" value="${equipment.provider}" required>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <!-- Code to execute when the condition is false (equivalent to 'else') -->
-                                                    <input type="text" name="lastname" class="form-control form-control-lg" placeholder="Lastname" required>
+                                                    <input type="text" name="provider" class="form-control form-control-lg" placeholder="Provider" required>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <div class="invalid-feedback">Lastname is required!</div>
+                                            <div class="invalid-feedback">Provider is required!</div>
                                         </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <fieldset class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-control mb-3" id="status" name="status">
+                                                <option value="Bon">BON</option>
+                                                <option value="Mauvais">MAUVAIS</option>
+                                            </select>
+                                        </fieldset>
+                                        <div class="invalid-feedback">Status is required!</div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <fieldset class="form-group">
+                                            <label>Type</label>
+                                            <select class="form-control mb-3" id="type" name="type">
+                                                <option value="Router">ROUTER</option>
+                                                <option value="Switch">SWITCH</option>
+                                            </select>
+                                        </fieldset>
+                                        <div class="invalid-feedback">Type is required!</div>
                                     </div>
 
                                     <div class="mb-3">
                                         <c:choose>
                                             <c:when test="${equipment != null}">
                                                 <!-- Code to execute when the condition is true -->
-                                                <input type="text" name="equipmentname" class="form-control form-control-lg" value="${equipment.equipmentname}" required>
+                                                <input type="text" name="serial_number" class="form-control form-control-lg" value="${equipment.serial_number}" required>
                                             </c:when>
                                             <c:otherwise>
                                                 <!-- Code to execute when the condition is false (equivalent to 'else') -->
-                                                <input type="text" name="equipmentname" class="form-control form-control-lg" placeholder="Username" required>
+                                                <input type="text" name="serial_number" class="form-control form-control-lg" placeholder="Serial Number" required>
                                             </c:otherwise>
                                         </c:choose>
-                                        <div class="invalid-feedback">Username is required!</div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" required>
-                                        <div class="invalid-feedback">Password is required!</div>
+                                        <div class="invalid-feedback">Serial Number is required!</div>
                                     </div>
 
                                     <fieldset class="form-group">

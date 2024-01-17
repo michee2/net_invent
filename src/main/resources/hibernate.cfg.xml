@@ -23,7 +23,7 @@
         <mapping class="ci.net.demo1.models.entities.Equipment"/>
         <mapping class="ci.net.demo1.models.entities.Site"/>
         <mapping class="ci.net.demo1.models.entities.Role"/>
-        <mapping class="ci.net.demo1.models.entities.UpdatingLog"/>
+        <mapping class="ci.net.demo1.models.entities.Log"/>
         <mapping class="ci.net.demo1.models.entities.Link"/>
         <mapping class="ci.net.demo1.models.entities.User"/>
 

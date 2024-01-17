@@ -66,7 +66,8 @@
                                     <th>Name</th>
                                     <th>Type</th>
                                     <th>Serial Number</th>
-                                    <th>Etat</th>
+                                    <th>Status</th>
+                                    <th>Provider</th>
                                     <th>Site</th>
                                     <th>Action</th>
                                 </tr>
@@ -77,7 +78,8 @@
                                     <th>Name</th>
                                     <th>Type</th>
                                     <th>Serial Number</th>
-                                    <th>Etat</th>
+                                    <th>Status</th>
+                                    <th>Provider</th>
                                     <th>Site</th>
                                     <th>Action</th>
                                 </tr>
@@ -92,7 +94,8 @@
                                         <td><c:out value="${equipment.name}" /></td>
                                         <td><c:out value="${equipment.type}" /></td>
                                         <td><c:out value="${equipment.serial_number}" /></td>
-                                        <td><c:out value="${equipment.etat}" /></td>
+                                        <td><c:out value="${equipment.status}" /></td>
+                                        <td><c:out value="${equipment.provider}" /></td>
                                         <td><c:out value="${equipment.site.getName()}" /></td>
 
                                         <td class="d-flex flex-row">

@@ -16,8 +16,8 @@ public class MainApp {
         SiteRepo siteRepo = new SiteRepo();
 
         // create some courses
-        Role role = new Role("admin");
-        Role role1 = new Role("technicien");
+        Role role = new Role("Admin");
+        Role role1 = new Role("Technicien");
         roleRepo.create(role);
         roleRepo.create(role1);
 

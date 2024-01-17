@@ -118,5 +118,74 @@ public class EquipmentRepo implements Repo<Equipment> {
             e.printStackTrace();
         }
     }
+
+    public List<Equipment> getAllFaulty() {
+        Transaction tx = null;
+        List<Equipment> equipements_faulty = null;
+        SessionFactory factory = HibernateConnection.getSessionFactory();
+        try (Session session = factory.openSession()) {
+
+            tx = session.beginTransaction();
+            equipements_faulty = session.createQuery("from Equipment e WHERE e.status = :status", Equipment.class)
+                    .setParameter("status", "Mauvais")
+                    .getResultList();
+
+            tx.commit();
+
+            session.close();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
+        return equipements_faulty;
+    }
+
+    public List<Equipment> getAllRouters() {
+        Transaction tx = null;
+        List<Equipment> routers = null;
+        SessionFactory factory = HibernateConnection.getSessionFactory();
+        try (Session session = factory.openSession()) {
+
+            tx = session.beginTransaction();
+            routers = session.createQuery("from Equipment e WHERE e.type = :type", Equipment.class)
+                    .setParameter("type", "Router")
+                    .getResultList();
+
+            tx.commit();
+
+            session.close();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
+        return routers;
+    }
+
+    public List<Equipment> getAllSwitches() {
+        Transaction tx = null;
+        List<Equipment> switchs = null;
+        SessionFactory factory = HibernateConnection.getSessionFactory();
+        try (Session session = factory.openSession()) {
+
+            tx = session.beginTransaction();
+            switchs = session.createQuery("from Equipment e WHERE e.type = :type", Equipment.class)
+                    .setParameter("type", "Switch")
+                    .getResultList();
+
+            tx.commit();
+
+            session.close();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
+        return switchs;
+    }
 }
 

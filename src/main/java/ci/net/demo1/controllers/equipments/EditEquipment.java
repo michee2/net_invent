@@ -3,6 +3,7 @@ package ci.net.demo1.controllers.equipments;
 import ci.net.demo1.models.entities.Equipment;
 import ci.net.demo1.models.entities.Site;
 import ci.net.demo1.models.repos.EquipmentRepo;
+import ci.net.demo1.models.repos.SiteRepo;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,10 +18,11 @@ import java.util.List;
 @WebServlet("/equipment/edit")
 public class EditEquipment extends HttpServlet {
     private EquipmentRepo equipmentRepo;
-    private
+    private SiteRepo siteRepo;
 
     public void init() {
         equipmentRepo = new EquipmentRepo();
+        siteRepo = new SiteRepo();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,7 +1,6 @@
 package ci.net.demo1.models.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,7 +36,7 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UpdatingLog> updatingLogs = new ArrayList<>();
+    private List<Log> logs = new ArrayList<>();
 
 
 

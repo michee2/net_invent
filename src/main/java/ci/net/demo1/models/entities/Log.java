@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Data @NoArgsConstructor
-public class UpdatingLog {
+public class Log {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
