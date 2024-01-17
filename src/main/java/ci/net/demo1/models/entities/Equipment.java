@@ -17,23 +17,15 @@ public class Equipment {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @Transient
-    static int nb_equips = 0;
-
-    @Transient
-    static int nb_equips_def = 0;
-
-    private String site;
+    @ManyToOne
+    @JoinColumn(name = "site_id")
+    private Site site;
 
     private String etat;
-
-    private boolean isBon;
 
     private String name;
 
     private String type;
-
-    private String location;
 
     private String provider;
 
@@ -49,13 +41,13 @@ public class Equipment {
     @OneToMany(mappedBy = "targetEquipment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Link> linksAsTarget = new ArrayList<>();
 
-    public Equipment(String site, String etat){
-        Equipment.nb_equips++;
-        this.site = site;
+    public Equipment(String name, String provider, String type, String serial_number, String etat,
+                     Site site){
+        this.name = name;
+        this.provider = provider;
+        this.type = type;
+        this.serial_number = serial_number;
         this.etat = etat;
-
-        if (!this.isBon) {
-            Equipment.nb_equips_def++;
-        }
+        this.site = site;
     }
 }

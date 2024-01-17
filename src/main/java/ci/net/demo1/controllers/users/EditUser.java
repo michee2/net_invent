@@ -1,7 +1,11 @@
 package ci.net.demo1.controllers.users;
 
-import ci.net.demo1.models.entities.Equipment;
-import ci.net.demo1.models.repos.EquipmentRepo;
+import ci.net.demo1.models.entities.Role;
+import ci.net.demo1.models.entities.Site;
+import ci.net.demo1.models.entities.User;
+import ci.net.demo1.models.repos.RoleRepo;
+import ci.net.demo1.models.repos.SiteRepo;
+import ci.net.demo1.models.repos.UserRepo;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,13 +15,19 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/user/edit")
 public class EditUser extends HttpServlet {
-    private EquipmentRepo equipmentRepo;
+    private UserRepo userRepo;
+    private SiteRepo siteRepo;
+
+    private RoleRepo roleRepo;
 
     public void init() {
-        equipmentRepo = new EquipmentRepo();
+        userRepo = new UserRepo();
+        siteRepo = new SiteRepo();
+        roleRepo = new RoleRepo();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,9 +48,19 @@ public class EditUser extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
-        Equipment existingEquipment = equipmentRepo.getById(id);
-        request.setAttribute("equipment", existingEquipment);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views_mod/equipment-form.jsp");
+        User existingUser = userRepo.getById(id);
+
+        List<Site> sites = siteRepo.getAll();
+        Role role = roleRepo.getById(Long.parseLong("2"));
+        Site siteUser = existingUser.getSite();
+
+        request.setAttribute("role", role);
+        request.setAttribute("sites", sites);
+        request.setAttribute("siteUser", siteUser);
+
+        request.setAttribute("user", existingUser);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/users/userForm.jsp");
         dispatcher.forward(request, response);
 
     }

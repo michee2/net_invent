@@ -1,6 +1,7 @@
 package ci.net.demo1.models.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -46,6 +47,16 @@ public class User {
         this.lastname=lastname;
         this.username=username;
         this.password=password;
+    }
+
+    public User(String firstname, String lastname, String username, String password, Site site, Role role){
+        User.nbusers++;
+        this.firstname=firstname;
+        this.lastname=lastname;
+        this.username=username;
+        this.password=password;
+        this.site=site;
+        this.role=role;
     }
 
 

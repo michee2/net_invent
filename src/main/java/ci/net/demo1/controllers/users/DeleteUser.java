@@ -1,7 +1,7 @@
 package ci.net.demo1.controllers.users;
 
-import ci.net.demo1.models.entities.Equipment;
-import ci.net.demo1.models.repos.EquipmentRepo;
+import ci.net.demo1.models.entities.User;
+import ci.net.demo1.models.repos.UserRepo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,29 +14,29 @@ import java.sql.SQLException;
 
 @WebServlet("/user/delete")
 public class DeleteUser extends HttpServlet {
-    private EquipmentRepo equipmentRepo;
+    private UserRepo userRepo;
 
     public void init() {
-        equipmentRepo = new EquipmentRepo();
+        userRepo = new UserRepo();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            deleteEquipment(request, response);
+            deleteUser(request, response);
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
     }
 
-    private void deleteEquipment(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
-        Equipment deleteEquipment = equipmentRepo.getById(id);
+        User deleteUser = userRepo.getById(id);
 
-        if (deleteEquipment != null) {
-            equipmentRepo.delete(deleteEquipment);
-            response.sendRedirect("/demo1-1.0-SNAPSHOT/equipment");
+        if (deleteUser != null) {
+            userRepo.delete(deleteUser);
+            response.sendRedirect("/demo1-1.0-SNAPSHOT/user");
         }
     }
 }

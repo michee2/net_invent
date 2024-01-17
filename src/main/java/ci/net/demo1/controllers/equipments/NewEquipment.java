@@ -16,7 +16,7 @@ public class NewEquipment extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views_mod/equipment-form.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/equipments/equipmentForm.jsp");
         dispatcher.forward(request, response);
     }
 }

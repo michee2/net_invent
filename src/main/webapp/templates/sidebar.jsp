@@ -8,9 +8,9 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.jsp">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%=request.getContextPath()%>/home">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fas fa-server"></i>
         </div>
         <div class="sidebar-brand-text mx-3">NetInvent</div>
     </a>
@@ -20,8 +20,8 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="home.jsp">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+        <a class="nav-link" href="<%=request.getContextPath()%>/home">
+            <i class="fas fa-home"></i>
             <span>Dashboard</span></a>
     </li>
 
@@ -30,8 +30,8 @@
 
     <!-- Nav Item - Equipments -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.jsp">
-            <i class="fas fa-fw fa-table"></i>
+        <a class="nav-link" href="<%=request.getContextPath()%>/equipment">
+            <i class="fas fa-server"></i>
             <span>Equipments</span></a>
     </li>
 
@@ -40,8 +40,8 @@
 
     <!-- Nav Item - Logs -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.jsp">
-            <i class="fas fa-fw fa-table"></i>
+        <a class="nav-link" href="<%=request.getContextPath()%>/log">
+            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
             <span>Logs</span></a>
     </li>
 
@@ -50,8 +50,8 @@
 
     <!-- Nav Item - Users -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.jsp">
-            <i class="fas fa-fw fa-table"></i>
+        <a class="nav-link" href="<%=request.getContextPath()%>/user">
+            <i class="fas fa-users fa-sm fa-fw mr-2 text-gray-400"></i>
             <span>Users</span></a>
     </li>
 

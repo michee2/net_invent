@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +31,10 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-5">
+                        <img src="${pageContext.request.contextPath}/templates/img/net.jpg" alt="Network" width="800" height="600">
+                    </div>
+
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">

@@ -35,7 +35,7 @@ public class ReadEquipment extends HttpServlet {
             throws SQLException, IOException, ServletException {
         List<Equipment> listEquipment = equipmentRepo.getAll();
         request.setAttribute("listEquipment", listEquipment);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("equipments/logList.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("equipments/equipmentList.jsp");
         dispatcher.forward(request, response);
     }
 }

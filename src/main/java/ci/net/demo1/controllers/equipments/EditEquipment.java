@@ -1,6 +1,7 @@
 package ci.net.demo1.controllers.equipments;
 
 import ci.net.demo1.models.entities.Equipment;
+import ci.net.demo1.models.entities.Site;
 import ci.net.demo1.models.repos.EquipmentRepo;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -11,10 +12,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/equipment/edit")
 public class EditEquipment extends HttpServlet {
     private EquipmentRepo equipmentRepo;
+    private
 
     public void init() {
         equipmentRepo = new EquipmentRepo();
@@ -38,9 +41,15 @@ public class EditEquipment extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
+
         Equipment existingEquipment = equipmentRepo.getById(id);
+        List<Site> sites = siteRepo.getAll();
+        Site siteEquipment = existingEquipment.getSite();
+
         request.setAttribute("equipment", existingEquipment);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views_mod/equipment-form.jsp");
+        request.setAttribute("sites", sites);
+        request.setAttribute("siteEquipment", siteEquipment);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/equipments/equipmentForm.jsp");
         dispatcher.forward(request, response);
 
     }

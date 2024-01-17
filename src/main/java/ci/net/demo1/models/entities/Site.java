@@ -20,7 +20,10 @@ public class Site {
     private String name;
 
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
-    private List<User> users=new ArrayList<>();
+    private List<User> users = new ArrayList<>();
+
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
+    private List<Equipment> equipments = new ArrayList<>();
 
     public Site(String name){
         this.name=name;
